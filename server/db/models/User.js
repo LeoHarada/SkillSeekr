@@ -13,7 +13,77 @@ const User = db.define('user', {
   },
   password: {
     type: Sequelize.STRING,
-  }
+  },
+  imgUrl: {
+    type: Sequelize.STRING,
+    defaultValue: 'https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg'
+  },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique:true,
+    validate: {
+        notEmpty: true,
+        isEmail: true,
+    }
+  },
+  role: {
+    type: Sequelize.ENUM('employee', 'employer'),
+    allowNull: false,
+    defaultValue: 'employee'
+  },
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  industry: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  location: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  locationPreference: {
+    type: Sequelize.ENUM('on-site', 'hybrid', 'remote'),
+    allowNull: false,
+    defaultValue: 'on-site'
+  },
+  salaryExpectation: {
+    type: Sequelize.INTEGER,
+  },
+  jobStatus: {
+    type: Sequelize.ENUM('employed', 'unemployed', 'n/a'),
+    allowNull: false,
+    defaultValue: 'n/a'
+  },
+  jobLevel: {
+    type: Sequelize.ENUM('entrylevel', 'associate', 'mid-senior', 'directors', 'exec'),
+    allowNull: false,
+    defaultValue: 'entrylevel'
+  },
+  jobSeeking: {
+    type: Sequelize.STRING,
+  },
+  yearsOfExperience: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  educationLevel: {
+    type: Sequelize.ENUM('highschool', 'associate', 'bachelors', 'masters', 'doctoral'),
+    allowNull: false,
+    defaultValue: 'highschool'
+  },
+  languages: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    defaultValue: 'english'
+  },
+  
 })
 
 module.exports = User
