@@ -12,8 +12,78 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' }),
+    User.create({
+      username: 'cody',
+      password: '123',
+      email: 'cody@example.com',
+      role: 'employee',
+      firstname: 'Cody',
+      lastname: 'Zucker',
+      industry: 'Information Technology',
+      location: 'New York',
+      locationpreference: 'hybrid',
+      salaryexpectation: 80000,
+      jobstatus: 'employed',
+      joblevel: 'mid-senior',
+      jobseeking: 'open to new opportunities',
+      yearsofexperience: 7,
+      educationlevel: 'bachelors',
+      languages: 'english, spanish'
+    }),
+    User.create({
+      username: 'murphy',
+      password: '123',
+      email: 'murphy@example.com',
+      role: 'employee',
+      firstname: 'Murphy',
+      lastname: 'Love',
+      industry: 'Finance',
+      location: 'Los Angeles',
+      locationpreference: 'on-site',
+      salaryexpectation: 150000,
+      jobstatus: 'employed',
+      joblevel: 'exec',
+      jobseeking: 'open to new opportunities',
+      yearsofexperience: 7,
+      educationlevel: 'masters',
+      languages: 'english'
+    }),
+    User.create({
+      username: 'john_doe',
+      password: '123',
+      email: 'john.doe@example.com',
+      role: 'employee',
+      firstname: 'John',
+      lastname: 'Doe',
+      industry: 'Hospitality',
+      location: 'New York',
+      locationpreference: 'hybrid',
+      salaryexpectation: 100000,
+      jobstatus: 'employed',
+      joblevel: 'mid-senior',
+      jobseeking: 'open to new opportunities',
+      yearsofexperience: 7,
+      educationlevel: 'masters',
+      languages: 'english, spanish'
+    }),
+    User.create({
+      username: 'jane_smith',
+      password: '123',
+      email: 'jane.smith@example.com',
+      role: 'employer',
+      firstname: 'Jane',
+      lastname: 'Smith',
+      industry: 'Marketing',
+      location: 'Los Angeles',
+      locationpreference: 'remote',
+      salaryexpectation: null,
+      jobstatus: 'n/a',
+      joblevel: 'associate',
+      jobseeking: null,
+      yearsofexperience: 3,
+      educationlevel: 'bachelors',
+      languages: 'english, french'
+    })
   ])
 
   console.log(`seeded ${users.length} users`)
@@ -21,7 +91,9 @@ async function seed() {
   return {
     users: {
       cody: users[0],
-      murphy: users[1]
+      murphy: users[1],
+      john_doe: users[2],
+      jane_smith: users[3]
     }
   }
 }

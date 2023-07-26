@@ -14,7 +14,7 @@ const User = db.define('user', {
   password: {
     type: Sequelize.STRING,
   },
-  imgUrl: {
+  imgurl: {
     type: Sequelize.STRING,
     defaultValue: 'https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg'
   },
@@ -32,11 +32,11 @@ const User = db.define('user', {
     allowNull: false,
     defaultValue: 'employee'
   },
-  firstName: {
+  firstname: {
     type: Sequelize.STRING,
     allowNull: false
   },
-  lastName: {
+  lastname: {
     type: Sequelize.STRING,
     allowNull: false
   },
@@ -48,32 +48,32 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  locationPreference: {
-    type: Sequelize.ENUM('on-site', 'hybrid', 'remote'),
+  locationpreference: {
+    type: Sequelize.ENUM('on-site', 'hybrid', 'remote', 'n/a'),
     allowNull: false,
     defaultValue: 'on-site'
   },
-  salaryExpectation: {
+  salaryexpectation: {
     type: Sequelize.INTEGER,
   },
-  jobStatus: {
+  jobstatus: {
     type: Sequelize.ENUM('employed', 'unemployed', 'n/a'),
     allowNull: false,
     defaultValue: 'n/a'
   },
-  jobLevel: {
+  joblevel: {
     type: Sequelize.ENUM('entrylevel', 'associate', 'mid-senior', 'directors', 'exec'),
     allowNull: false,
     defaultValue: 'entrylevel'
   },
-  jobSeeking: {
+  jobseeking: {
     type: Sequelize.STRING,
   },
-  yearsOfExperience: {
+  yearsofexperience: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
-  educationLevel: {
+  educationlevel: {
     type: Sequelize.ENUM('highschool', 'associate', 'bachelors', 'masters', 'doctoral'),
     allowNull: false,
     defaultValue: 'highschool'
@@ -82,8 +82,7 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     allowNull: false,
     defaultValue: 'english'
-  },
-  
+  }
 })
 
 module.exports = User
