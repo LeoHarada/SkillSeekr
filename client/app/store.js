@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import authReducer from '../features/auth/authSlice';
+import userReducer from '../store/userSlice'
 
 const store = configureStore({
-  reducer: { auth: authReducer },
+  reducer: { auth: authReducer, user: userReducer },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
