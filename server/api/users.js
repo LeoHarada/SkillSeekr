@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { models: { User }} = require('../db');
-const {requireToken} = require('./tokenHelper');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -33,7 +32,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/user/:userId', requireToken, async (req, res, next) => {
+router.get('/:userId', async (req, res, next) => {
   try {
     const userId = req.params.userId;
     const user = await User.findByPk(userId, {
@@ -67,7 +66,7 @@ router.get('/user/:userId', requireToken, async (req, res, next) => {
   }
 });
 
-router.put('/user/:userId/edit', requireToken, async (req, res, next) => {
+router.put('/:userId/edit', async (req, res, next) => {
   try {
     const userId = req.params.userId;
     const {       
