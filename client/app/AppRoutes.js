@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import AuthForm from '../features/auth/AuthForm';
 import Home from '../features/home/Home';
 import { me } from './store';
-import User from '../components/User';
+import UserDetails from '../components/UserDetails';
 
 /**
  * COMPONENT
@@ -16,7 +16,7 @@ const AppRoutes = () => {
 
   useEffect(() => {
     dispatch(me());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
@@ -24,7 +24,7 @@ const AppRoutes = () => {
         <Routes>
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
-          <Route to="/user/:userId" element={<User />} />
+          <Route path="/users/:id" element={<UserDetails />} />
         </Routes>
       ) : (
         <Routes>

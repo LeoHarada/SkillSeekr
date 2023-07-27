@@ -32,10 +32,10 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:userId', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
-    const userId = req.params.userId;
-    const user = await User.findByPk(userId, {
+    const { id } = req.params;
+    const user = await User.findByPk(id, {
       attributes: [
         'id',
         'username',
@@ -66,9 +66,9 @@ router.get('/:userId', async (req, res, next) => {
   }
 });
 
-router.put('/:userId/edit', async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   try {
-    const userId = req.params.userId;
+    const { id } = req.params;
     const {       
       email,
       role,
@@ -85,7 +85,7 @@ router.put('/:userId/edit', async (req, res, next) => {
       educationlevel,
       languages } = req.body;
 
-    const user = await User.findByPk(userId);
+    const user = await User.findByPk(id);
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }

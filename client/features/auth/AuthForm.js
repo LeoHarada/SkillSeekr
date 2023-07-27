@@ -1,6 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { authenticate } from '../../app/store';
+import { useSelector } from 'react-redux';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 
@@ -10,7 +9,7 @@ import SignUpForm from './SignUpForm';
   Props for Sign up: name="signup", displayName="Sign Up"
 **/
 
-const AuthForm = ({ name, displayName }) => {
+const AuthForm = ({ name }) => {
   const { error } = useSelector((state) => state.auth);
 
   return (
