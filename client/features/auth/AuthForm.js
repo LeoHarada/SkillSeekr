@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import LoginForm from './LoginForm';
-import SignUpForm from './SignUpForm';
+import SignUpForm from './EmployeeSignUpForm';
 
 /**
   The AuthForm component can be used for Login or Sign Up.

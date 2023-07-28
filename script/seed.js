@@ -1,6 +1,6 @@
 'use strict'
 
-const {db, models: {User} } = require('../server/db')
+const {db, models: {User, Employer} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -16,7 +16,7 @@ async function seed() {
       username: 'cody',
       password: '123',
       email: 'cody@example.com',
-      role: 'employee',
+      role: 'Employee',
       firstname: 'Cody',
       lastname: 'Zucker',
       industry: 'Information Technology',
@@ -35,7 +35,7 @@ async function seed() {
       username: 'murphy',
       password: '123',
       email: 'murphy@example.com',
-      role: 'employee',
+      role: 'Employee',
       firstname: 'Murphy',
       lastname: 'Love',
       industry: 'Finance',
@@ -54,7 +54,7 @@ async function seed() {
       username: 'john_doe',
       password: '123',
       email: 'john.doe@example.com',
-      role: 'employee',
+      role: 'Employee',
       firstname: 'John',
       lastname: 'Doe',
       industry: 'Hospitality',
@@ -73,7 +73,7 @@ async function seed() {
       username: 'jane_smith',
       password: '123',
       email: 'jane.smith@example.com',
-      role: 'employer',
+      role: 'Employee',
       firstname: 'Jane',
       lastname: 'Smith',
       industry: 'Marketing',
@@ -90,7 +90,60 @@ async function seed() {
     })
   ])
 
+    // Creating Employers
+    const employers = await Promise.all([
+      Employer.create({
+        username: 'zach',
+        password: '123',
+        email: 'zach@constructionkings.com',
+        role: 'Employer',
+        firstname: 'Zach',
+        lastname: 'Warner',
+        industry: 'Construction',
+        location: 'New York',
+        company: 'Construction Kings',
+        languages: 'english, spanish',
+      }),
+      Employer.create({
+        username: 'helen',
+        password: '123',
+        email: 'helen@dc.com',
+        role: 'Employer',
+        firstname: 'Helen',
+        lastname: 'Shell',
+        industry: 'Dentistry',
+        location: 'Montana',
+        company: 'Clean Teeth Org',
+        languages: 'english',
+      }),
+      Employer.create({
+        username: 'ryo',
+        password: '123',
+        email: 'ryo@crunchyroll.com',
+        role: 'Employer',
+        firstname: 'Ryo',
+        lastname: 'Kazaki',
+        industry: 'Anime',
+        location: 'Japan',
+        company: 'Crunchyroll',
+        languages: 'english, japanese',
+      }),
+      Employer.create({
+        username: 'paige',
+        password: '123',
+        email: 'paige@clothing.com',
+        role: 'Employer',
+        firstname: 'Paige',
+        lastname: 'Hester',
+        industry: 'Clothing',
+        location: 'France',
+        company: 'Paige Clothing',
+        languages: 'english, French',
+      }),
+    ])
+
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${employers.length} employers`)
   console.log(`seeded successfully`)
   return {
     users: {
@@ -98,6 +151,12 @@ async function seed() {
       murphy: users[1],
       john_doe: users[2],
       jane_smith: users[3]
+    },
+    employers: {
+      zach: employers[0],
+      helen: employers[1],
+      ryo: employers[2],
+      paige: employers[3]
     }
   }
 }

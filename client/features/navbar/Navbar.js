@@ -5,7 +5,8 @@ import { logout } from '../../app/store';
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const id = useSelector((state) => state.auth.me.id)
+  const role = useSelector((state) => state.auth.me.role);
+  const id = useSelector((state) => state.auth.me.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutAndRedirectHome = () => {
@@ -20,11 +21,23 @@ const Navbar = () => {
       <nav>
         {isLoggedIn ? (
           <div>
-            {/* The navbar will show these links after you log in */}
-            <Link to="/home">Home</Link>
-            <Link to={`/users/${id}`}>Profile</Link>
-            <Link to={`/uploads/${id}`}>Upload Resume</Link>
-            <Link to={`/users/${id}/edit`}>Edit Profile</Link>
+            {/* Conditionally render navigation links based on the user's role */}
+            {role === 'Employee' ? (
+              <React.Fragment>
+                <Link to="/home">Home</Link>
+                <Link to={`/users/${id}`}>Profile</Link>
+                <Link to={`/uploads/${id}`}>Upload Resume</Link>
+                <Link to={`/users/${id}/edit`}>Edit Profile</Link>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                {/* Navigation links for employers */}
+                <Link to="/employer-home">Employer Home</Link>
+                <Link to={`/employers/${id}`}>Profile</Link>
+                <Link to={`/employers/${id}/edit`}>Edit Profile</Link>
+                {/* Add more employer-specific links here */}
+              </React.Fragment>
+            )}
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>

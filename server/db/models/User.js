@@ -16,7 +16,7 @@ const User = db.define('user', {
   },
   imgurl: {
     type: Sequelize.STRING,
-    defaultValue: 'https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg'
+    defaultValue: '/images/employeetie.png'
   },
   email: {
     type: Sequelize.STRING,
@@ -28,9 +28,8 @@ const User = db.define('user', {
     }
   },
   role: {
-    type: Sequelize.ENUM('employee', 'employer'),
-    allowNull: false,
-    defaultValue: 'employee'
+    type: Sequelize.ENUM('Employee'),
+    allowNull: false
   },
   firstname: {
     type: Sequelize.STRING,
@@ -42,46 +41,34 @@ const User = db.define('user', {
   },
   industry: {
     type: Sequelize.STRING,
-    allowNull: false
   },
   location: {
     type: Sequelize.STRING,
-    allowNull: false
   },
   locationpreference: {
-    type: Sequelize.ENUM('on-site', 'hybrid', 'remote', 'n/a'),
-    allowNull: false,
-    defaultValue: 'on-site'
+    type: Sequelize.STRING,
   },
   salaryexpectation: {
     type: Sequelize.INTEGER,
   },
   jobstatus: {
-    type: Sequelize.ENUM('employed', 'unemployed', 'n/a'),
-    allowNull: false,
-    defaultValue: 'n/a'
+    type: Sequelize.STRING,
   },
   joblevel: {
-    type: Sequelize.ENUM('entrylevel', 'associate', 'mid-senior', 'directors', 'exec'),
-    allowNull: false,
-    defaultValue: 'entrylevel'
+    type: Sequelize.STRING,
   },
   jobseeking: {
     type: Sequelize.STRING,
   },
   yearsofexperience: {
     type: Sequelize.INTEGER,
-    allowNull: false
   },
   educationlevel: {
-    type: Sequelize.ENUM('highschool', 'associate', 'bachelors', 'masters', 'doctoral'),
-    allowNull: false,
-    defaultValue: 'highschool'
+    type: Sequelize.STRING,
   },
   languages: {
     type: Sequelize.STRING,
-    allowNull: false,
-    defaultValue: 'english'
+    defaultValue: 'English'
   },
   resume: {
     type: Sequelize.STRING,
@@ -107,7 +94,7 @@ User.prototype.generateToken = function() {
  * classMethods
  */
 User.authenticate = async function({ username, password }){
-    const user = await this.findOne({where: { username }})
+    const user = await User.findOne({where: { username }})
     if (!user || !(await user.correctPassword(password))) {
       const error = Error('Incorrect username/password');
       error.status = 401;
@@ -119,9 +106,9 @@ User.authenticate = async function({ username, password }){
 User.findByToken = async function(token) {
   try {
     const {id} = await jwt.verify(token, process.env.JWT)
-    const user = User.findByPk(id)
+    const user = await User.findByPk(id)
     if (!user) {
-      throw 'nooo'
+      throw new Error('User not found')
     }
     return user
   } catch (ex) {
