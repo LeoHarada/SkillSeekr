@@ -23,6 +23,7 @@ const Navbar = () => {
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
             <Link to={`/users/${id}`}>User Details</Link>
+            <Link to={`/uploads/${id}`}>Upload Resume</Link>
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>

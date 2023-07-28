@@ -28,7 +28,8 @@ async function seed() {
       jobseeking: 'open to new opportunities',
       yearsofexperience: 7,
       educationlevel: 'bachelors',
-      languages: 'english, spanish'
+      languages: 'english, spanish',
+      resume: null
     }),
     User.create({
       username: 'murphy',
@@ -46,7 +47,8 @@ async function seed() {
       jobseeking: 'open to new opportunities',
       yearsofexperience: 7,
       educationlevel: 'masters',
-      languages: 'english'
+      languages: 'english',
+      resume: null
     }),
     User.create({
       username: 'john_doe',
@@ -64,7 +66,8 @@ async function seed() {
       jobseeking: 'open to new opportunities',
       yearsofexperience: 7,
       educationlevel: 'masters',
-      languages: 'english, spanish'
+      languages: 'english, spanish',
+      resume: null
     }),
     User.create({
       username: 'jane_smith',
@@ -82,7 +85,8 @@ async function seed() {
       jobseeking: null,
       yearsofexperience: 3,
       educationlevel: 'bachelors',
-      languages: 'english, french'
+      languages: 'english, french',
+      resume: null
     })
   ])
 

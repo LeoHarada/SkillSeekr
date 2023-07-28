@@ -31,7 +31,6 @@ const UserDetails = () => {
 
   return (
     <>
-      {/* {user && user.id === id ? ( */}
         <div>
           <h1>User Details</h1>
           <div key={user.id}>
@@ -81,7 +80,7 @@ const UserDetails = () => {
                 <p>Salary Expectation: 
                   <input type="number" name="salaryexpectation" value={updatedUser.salaryexpectation} onChange={handleInputChange} />
                 </p>
-                <p>Employed/Unemployed
+                <p>Employed/Unemployed: 
                   <input type="text" name="jobstatus" value={updatedUser.jobstatus} onChange={handleInputChange} /> 
                 </p>
                 <p>Seeking Position Level: 

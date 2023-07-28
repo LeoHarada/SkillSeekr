@@ -5,10 +5,7 @@ import AuthForm from '../features/auth/AuthForm';
 import Home from '../features/home/Home';
 import { me } from './store';
 import UserDetails from '../components/UserDetails';
-
-/**
- * COMPONENT
- */
+import ResumeUpload from '../components/ResumeUpload';
 
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
@@ -25,6 +22,7 @@ const AppRoutes = () => {
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
           <Route path="/users/:id" element={<UserDetails />} />
+          <Route path="/uploads/:id" element={<ResumeUpload />}/>
         </Routes>
       ) : (
         <Routes>

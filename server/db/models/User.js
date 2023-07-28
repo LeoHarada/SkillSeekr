@@ -82,6 +82,10 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     allowNull: false,
     defaultValue: 'english'
+  },
+  resume: {
+    type: Sequelize.STRING,
+    allowNull:true
   }
 })
 
