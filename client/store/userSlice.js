@@ -23,7 +23,7 @@ export const fetchAllUsers = createAsyncThunk("users/fetchAllUsers", async () =>
 
 export const updateUserAsync = createAsyncThunk("users/updateUser", async ({ token, id, userData }) => {
   try {
-    const { data } = await axios.put(`/api/users/${id}`, userData, {
+    const { data } = await axios.put(`/api/users/${id}/edit`, userData, {
         headers: {
             Authorization: `Bearer ${token}`,
         },

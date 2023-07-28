@@ -6,6 +6,7 @@ import Home from '../features/home/Home';
 import { me } from './store';
 import UserDetails from '../components/UserDetails';
 import ResumeUpload from '../components/ResumeUpload';
+import EditUser from '../components/EditUser';
 
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
@@ -22,7 +23,8 @@ const AppRoutes = () => {
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
           <Route path="/users/:id" element={<UserDetails />} />
-          <Route path="/uploads/:id" element={<ResumeUpload />}/>
+          <Route path="/users/:id/edit" element={<EditUser />} />
+          <Route path="/uploads/:id" element={<ResumeUpload />} />
         </Routes>
       ) : (
         <Routes>
