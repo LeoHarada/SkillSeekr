@@ -14,7 +14,7 @@ app.use('/api', require('./api'))
 app.get('/', (req, res)=> res.sendFile(path.join(__dirname, '..', 'public/index.html')));
 
 app.use(express.static(path.join(__dirname, '..', 'public')))
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
 app.use((req, res, next) => {
   if (path.extname(req.path).length) {

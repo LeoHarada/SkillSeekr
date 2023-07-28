@@ -9,19 +9,13 @@ const storage = multer.diskStorage({
   destination: async (req, file, cb) => {
     const id = req.params.id;
     const userUploadDir = path.join('uploads', 'users', id);
-
-    try {
-      await fs.promises.mkdir(userUploadDir, { recursive: true });
-    } catch (err) {
-      console.error('Error creating user directory:', err);
-    }
-
+    fs.promises.mkdir(userUploadDir, { recursive: true });
     cb(null, userUploadDir);
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     const extension = path.extname(file.originalname);
-    cb(null, file.fieldname + '-' + uniqueSuffix + extension);
+    cb(null, 'resume-' + uniqueSuffix + extension);
   },
 });
 
@@ -55,7 +49,7 @@ router.get('/:id/resume', async (req, res) => {
       return res.status(404).json({ error: 'User or resume not found' });
     }
 
-    const resumeFilePath = path.join(__dirname, '..', user.resume);
+    const resumeFilePath = path.join(__dirname, '..', '..', user.resume);
     res.sendFile(resumeFilePath);
   } catch (error) {
     console.error('Error sending resume:', error);

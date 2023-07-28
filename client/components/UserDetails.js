@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSingleUser, updateUserAsync } from '../store/userSlice';
+import UserResume from './UserResume';
 
 const UserDetails = () => {
   const dispatch = useDispatch();
@@ -103,6 +104,9 @@ const UserDetails = () => {
             ) : (
               <button onClick={() => setEditMode(true)}>Edit</button>
             )}
+          </div>
+          <div>
+            <UserResume id={id}/>
           </div>
         </div>
     </>
