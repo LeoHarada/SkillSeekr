@@ -32,6 +32,7 @@ A list of technologies used within the project:
 ```
 $ git clone https://github.com/your-username/project-title.git
 $ cd ../path/to/the/file
+$ code .
 $ npm install
 $ npm run seed
 $ npm run build
