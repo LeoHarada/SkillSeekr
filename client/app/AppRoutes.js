@@ -8,6 +8,8 @@ import UserDetails from '../components/UserDetails';
 import ResumeUpload from '../components/ResumeUpload';
 import EditUser from '../components/EditUser';
 import EmployerDetails from '../components/EmployerDetails';
+import EditEmployer from '../components/EditEmployer';
+import AllUsers from '../components/AllUsers'
 
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
@@ -26,8 +28,9 @@ const AppRoutes = () => {
           <Route path="/users/:id" element={<UserDetails />} />
           <Route path="/users/:id/edit" element={<EditUser />} />
           <Route path="/uploads/:id" element={<ResumeUpload />} />
-          <Route path="/employers/:id" element={<EmployerDetails />}/>
-          <Route path="/employers/:id/edit" element={<EmployerDetails />}/>
+          <Route path="/employers/:id" element={<EmployerDetails />} />
+          <Route path="/employers/:id/edit" element={<EditEmployer />} />
+          <Route path="/users" element={<AllUsers />} />
         </Routes>
       ) : (
         <Routes>

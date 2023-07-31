@@ -39,9 +39,6 @@ const EditUser = () => {
                 <p>Username: 
                   <input type="text" name="userName" value={updatedUser.username} onChange={handleInputChange} />
                 </p>
-                <p>Role: 
-                  <input type="text" name="role" value={updatedUser.role} onChange={handleInputChange} />
-                </p>
                 <p>Email: 
                   <input type="email" name="email" value={updatedUser.email} onChange={handleInputChange} />
                 </p>

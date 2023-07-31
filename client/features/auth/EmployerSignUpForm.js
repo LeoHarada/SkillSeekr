@@ -73,12 +73,6 @@ const EmployerSignUpForm = ({ displayName }) => {
                 <input name="location" type="text" />
             </div>
             <div>
-                <label htmlFor="company">
-                    <small>Company</small>
-                </label>
-                <input name="company" type="text" />
-            </div>
-            <div>
                 <label htmlFor="languages">
                     <small>Languages</small>
                 </label>

@@ -33,6 +33,7 @@ const Navbar = () => {
                 <Link to="/employer-home">Employer Home</Link>
                 <Link to={`/employers/${id}`}>Profile</Link>
                 <Link to={`/employers/${id}/edit`}>Edit Profile</Link>
+                <Link to="/users">Find an Employee</Link>
               </React.Fragment>
             )}
             <button type="button" onClick={logoutAndRedirectHome}>
