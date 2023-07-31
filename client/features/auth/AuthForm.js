@@ -19,7 +19,7 @@ const AuthForm = ({ name }) => {
           ) : (
             <SignUpForm displayName="Sign Up" />
           )}
-        {error && <div> {error} </div>}
+        {error && <div>Error: {error.message} </div>}
     </div>
   );
 };

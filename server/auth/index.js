@@ -7,12 +7,22 @@ module.exports = router;
 
 router.post('/login', async (req, res, next) => {
   try {
-    const { role } = req.body;
+    const { role, username, password } = req.body;
 
-    // Determine whether it's a user or employer attempting to log in
-    const authFunction = role === 'Employee' ? User.authenticate : Employer.authenticateEmployer;
+    let authFunction;
+    if (role === 'Employee') {
+      authFunction = User.authenticate;
+    } else if (role === 'Employer') {
+      authFunction = Employer.authenticateEmployer;
+    } else {
+      return res.status(400).send('Invalid role');
+    }
 
-    res.send({ token: await authFunction(req.body) });
+    const token = await authFunction({ username, password });
+    const payload = { id: token.id, role };
+    const jwtOptions = { expiresIn: '1d' };
+    const signedToken = jwt.sign(payload, process.env.JWT, jwtOptions);
+    res.send({ token: signedToken });
   } catch (err) {
     next(err);
   }
@@ -22,12 +32,15 @@ router.post('/signup', async (req, res, next) => {
   try {
     const { role } = req.body;
 
-    // Determine whether it's a user or employer signing up
     const userModel = role === 'Employee' ? User : Employer;
 
-    // Create the user/employer
     const user = await userModel.create(req.body);
-    res.send({ token: await user.generateToken() });
+
+    const payload = { id: user.id, role };
+    const jwtOptions = { expiresIn: '1d' };
+    const signedToken = jwt.sign(payload, process.env.JWT, jwtOptions);
+
+    res.send({ token: signedToken });
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
       res.status(401).send('User already exists');
@@ -44,13 +57,18 @@ router.get('/me', async (req, res, next) => {
       return res.status(401).send('No token provided');
     }
 
-    // Decode the token to get the user/employer id and role
-    const { id, role } = jwt.verify(token, process.env.JWT);
+    const decodedToken = jwt.verify(token, process.env.JWT);
+    const { id, role } = decodedToken;
 
-    // Determine whether it's a user or employer requesting the profile
-    const userModel = role === 'Employee' ? User : Employer;
+    let userModel;
+    if (role === 'Employee') {
+      userModel = User;
+    } else if (role === 'Employer') {
+      userModel = Employer;
+    } else {
+      return res.status(400).send('Invalid role');
+    }
 
-    // Find the user/employer by their id
     const user = await userModel.findByPk(id);
 
     if (!user) {
@@ -62,3 +80,4 @@ router.get('/me', async (req, res, next) => {
     next(ex);
   }
 });
+

@@ -60,7 +60,6 @@ module.exports = Employer
  * instanceMethods
  */
 Employer.prototype.correctPassword = function(candidatePwd) {
-  //we need to compare the plain version to an encrypted version of the password
   return bcrypt.compare(candidatePwd, this.password);
 }
 
@@ -72,13 +71,14 @@ Employer.prototype.generateToken = function() {
  * classMethods
  */
 Employer.authenticateEmployer = async function ({ username, password }) {
+  console.log('Authenticating employer:', username);
   const employer = await Employer.findOne({ where: { username } });
   if (!employer || !(await employer.correctPassword(password))) {
     const error = new Error('Incorrect username/password');
     error.status = 401;
     throw error;
   }
-  return employer.generateToken();
+  return employer;
 };
 
 
@@ -91,18 +91,18 @@ Employer.findByToken = async function (token) {
     }
     return employer;
   } catch (ex) {
-    const error = new Error('bad token');
+    const error = new Error('Bad token');
     error.status = 401;
     throw error;
   }
 };
 
 
+
 /**
  * hooks
  */
 const hashPassword = async(employer) => {
-  //in case the password has been changed, we want to encrypt it with bcrypt
   if (employer.changed('password')) {
     employer.password = await bcrypt.hash(employer.password, SALT_ROUNDS);
   }

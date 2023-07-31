@@ -21,7 +21,6 @@ const Navbar = () => {
       <nav>
         {isLoggedIn ? (
           <div>
-            {/* Conditionally render navigation links based on the user's role */}
             {role === 'Employee' ? (
               <React.Fragment>
                 <Link to="/home">Home</Link>
@@ -31,11 +30,9 @@ const Navbar = () => {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {/* Navigation links for employers */}
                 <Link to="/employer-home">Employer Home</Link>
                 <Link to={`/employers/${id}`}>Profile</Link>
                 <Link to={`/employers/${id}/edit`}>Edit Profile</Link>
-                {/* Add more employer-specific links here */}
               </React.Fragment>
             )}
             <button type="button" onClick={logoutAndRedirectHome}>
@@ -44,7 +41,6 @@ const Navbar = () => {
           </div>
         ) : (
           <div>
-            {/* The navbar will show these links before you log in */}
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
           </div>

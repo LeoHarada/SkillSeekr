@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { authenticate } from '../../app/store';
 
 const EmployerSignUpForm = ({ displayName }) => {
     const dispatch = useDispatch();

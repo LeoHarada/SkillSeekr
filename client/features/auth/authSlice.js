@@ -9,7 +9,7 @@ const TOKEN = 'token';
 /*
   THUNKS
 */
-export const me = createAsyncThunk('auth/me', async () => {
+export const me = createAsyncThunk('auth/me', async (_, thunkAPI) => {
   const token = window.localStorage.getItem(TOKEN);
   try {
     if (token) {
@@ -26,18 +26,19 @@ export const me = createAsyncThunk('auth/me', async () => {
     if (err.response.data) {
       return thunkAPI.rejectWithValue(err.response.data);
     } else {
-      return 'There was an issue with your request.';
+      return thunkAPI.rejectWithValue('There was an issue with your request.');
     }
   }
 });
 
+
 export const authenticate = createAsyncThunk(
   'auth/authenticate',
-  async ({ username, password, method, userData }, thunkAPI) => {
+  async ({ role, username, password, method, userData }, thunkAPI) => {
     try {
-      const res = await axios.post(`/auth/${method}`, { username, password, ...userData });
+      const res = await axios.post(`/auth/${method}`, { role, username, password, ...userData });
       window.localStorage.setItem(TOKEN, res.data.token);
-      thunkAPI.dispatch(me());
+      thunkAPI.dispatch(me(role));
     } catch (err) {
       if (err.response.data) {
         return thunkAPI.rejectWithValue(err.response.data);
@@ -50,11 +51,11 @@ export const authenticate = createAsyncThunk(
 
 export const authenticateEmployer = createAsyncThunk(
   'auth/authenticateEmployer',
-  async ({ username, password, method, employerData }, thunkAPI) => {
+  async ({ role, username, password, method, employerData }, thunkAPI) => {
     try {
-      const res = await axios.post(`/auth/${method}`, { username, password, ...employerData });
+      const res = await axios.post(`/auth/${method}`, { role, username, password, ...employerData });
       window.localStorage.setItem(TOKEN, res.data.token);
-      thunkAPI.dispatch(me());
+      thunkAPI.dispatch(me(role));
     } catch (err) {
       if (err.response.data) {
         return thunkAPI.rejectWithValue(err.response.data);
