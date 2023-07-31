@@ -5,7 +5,7 @@
 
 # General Info
 ***
-MVP of a website where employers can find great employees. Employees are able to edit their profile and upload resumes, which only Employers are able to view and download with the propert authentication.
+MVP of a website where employers can find great employees. Employees are able to edit their profile and upload resumes, which only Employers are able to view and download with the proper authentication.
 
 # Technologies
 ***
